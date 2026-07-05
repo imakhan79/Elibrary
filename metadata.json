@@ -1,0 +1,6 @@
+{
+  "name": "Smart E-Library",
+  "description": "A modern digital library platform with an online book reader, admin dashboard, and an advanced human-like AI support chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
