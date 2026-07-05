@@ -354,17 +354,17 @@ export default function AdminDashboardComponent({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       
       {/* Admin Title bar */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pb-4 border-b border-slate-800">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pb-4 border-b border-slate-150">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-rose-500/10 text-rose-400 rounded-xl border border-rose-500/20">
-            <Shield className="w-5.5 h-5.5" />
+          <div className="p-2.5 bg-rose-50 text-rose-600 rounded-xl border border-rose-100 shadow-sm">
+            <Shield className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-extrabold tracking-tight text-slate-100">Librarian & Admin Dashboard</h2>
-            <p className="text-xs text-slate-400 mt-0.5">Welcome, Admin {user.name}. You hold full operational oversight.</p>
+            <h2 className="text-xl font-serif font-light text-slate-800 tracking-tight">Librarian Console</h2>
+            <p className="text-xs text-slate-500 mt-0.5">Welcome, Admin {user.name}. You hold full operational oversight of the catalog and chatbot.</p>
           </div>
         </div>
 
@@ -372,7 +372,7 @@ export default function AdminDashboardComponent({
         <div className="flex gap-2">
           <button
             onClick={refreshAllAdminData}
-            className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-750 border border-slate-700/60 rounded-xl text-xs font-semibold text-slate-300 hover:text-slate-100 flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:text-slate-900 flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Sync Stats</span>
@@ -381,21 +381,21 @@ export default function AdminDashboardComponent({
       </div>
 
       {statusMsg && (
-        <div className="p-3 bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs rounded-xl flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="p-3.5 bg-indigo-50 border border-indigo-150 text-indigo-700 text-xs rounded-xl flex items-center gap-2 font-medium">
+          <CheckCircle2 className="w-4 h-4 text-indigo-600 shrink-0" />
           <span>{statusMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-3 bg-red-950/60 border border-red-500/40 text-red-300 text-xs rounded-xl flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+        <div className="p-3.5 bg-red-50 border border-red-150 text-red-700 text-xs rounded-xl flex items-center gap-2 font-medium">
+          <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Tabs navigation */}
-      <div className="flex flex-wrap gap-1.5 border-b border-slate-800 pb-px">
+      <div className="flex flex-wrap gap-1 border-b border-slate-150">
         {[
           { id: "stats", label: "Stats & Analytics", icon: BarChart2 },
           { id: "users", label: "Users & Subscriptions", icon: Users },
@@ -418,10 +418,10 @@ export default function AdminDashboardComponent({
                 setEditingBookId(null);
                 setEditingFAQId(null);
               }}
-              className={`px-3 py-2 text-xs font-semibold rounded-t-lg border-b-2 flex items-center gap-1.5 transition-all cursor-pointer ${
+              className={`px-3.5 py-2 text-xs font-semibold rounded-t-xl border-b-2 flex items-center gap-1.5 transition-all cursor-pointer ${
                 isActive
-                  ? "border-emerald-500 text-emerald-400 bg-slate-800/40 font-bold"
-                  : "border-transparent text-slate-400 hover:text-slate-200"
+                  ? "border-indigo-600 text-indigo-600 bg-white font-bold"
+                  : "border-transparent text-slate-400 hover:text-slate-600"
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -432,48 +432,48 @@ export default function AdminDashboardComponent({
       </div>
 
       {/* Tab Panels content */}
-      <div className="bg-slate-850/30 p-1.5 rounded-2xl">
+      <div className="bg-slate-50/50 p-4 rounded-3xl border border-slate-100">
         
         {/* STATS & REPORTS TAB */}
         {activeTab === "stats" && (
           <div className="space-y-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="p-5 bg-slate-800 rounded-xl border border-slate-700/40">
-                <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Total Registered Readers</span>
-                <span className="block text-2xl font-extrabold text-emerald-400 mt-2">{stats.totalUsers}</span>
+              <div className="p-5 bg-white rounded-2xl border border-slate-150 shadow-sm">
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Registered Readers</span>
+                <span className="block text-3xl font-serif font-light text-indigo-600 mt-2">{stats.totalUsers}</span>
                 <span className="text-[9px] text-slate-400 block mt-1">Unified login accounts database</span>
               </div>
-              <div className="p-5 bg-slate-800 rounded-xl border border-slate-700/40">
-                <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Total Books Catalog</span>
-                <span className="block text-2xl font-extrabold text-emerald-400 mt-2">{stats.totalBooks}</span>
-                <span className="text-[9px] text-slate-400 block mt-1">Assigned categories & readable text</span>
+              <div className="p-5 bg-white rounded-2xl border border-slate-150 shadow-sm">
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Books Catalog</span>
+                <span className="block text-3xl font-serif font-light text-indigo-600 mt-2">{stats.totalBooks}</span>
+                <span className="text-[9px] text-slate-400 block mt-1">Assigned categories & text data</span>
               </div>
-              <div className="p-5 bg-slate-800 rounded-xl border border-slate-700/40">
-                <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Active Chatbot FAQ rules</span>
-                <span className="block text-2xl font-extrabold text-emerald-400 mt-2">{stats.totalFaqs}</span>
-                <span className="text-[9px] text-slate-400 block mt-1">RAG Context matches search rules</span>
+              <div className="p-5 bg-white rounded-2xl border border-slate-150 shadow-sm">
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Sarah FAQ Rules</span>
+                <span className="block text-3xl font-serif font-light text-indigo-600 mt-2">{stats.totalFaqs}</span>
+                <span className="text-[9px] text-slate-400 block mt-1">RAG Context search rules</span>
               </div>
-              <div className="p-5 bg-slate-800 rounded-xl border border-slate-700/40">
-                <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Monitored Unanswered queries</span>
-                <span className="block text-2xl font-extrabold text-emerald-400 mt-2">{stats.unansweredCount}</span>
-                <span className="text-[9px] text-slate-400 block mt-1">Sarah auto-logged logs training</span>
+              <div className="p-5 bg-white rounded-2xl border border-slate-150 shadow-sm">
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider font-sans">Unanswered queries</span>
+                <span className="block text-3xl font-serif font-light text-indigo-600 mt-2">{stats.unansweredCount}</span>
+                <span className="text-[9px] text-slate-400 block mt-1">Pending logs for training Sarah</span>
               </div>
             </div>
 
             {/* Visual simple chart metrics breakdowns */}
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-5">
               {/* Roles Breakdown */}
-              <div className="p-5 bg-slate-800 rounded-xl border border-slate-700/40 space-y-4">
-                <h4 className="text-xs font-extrabold text-slate-300 uppercase tracking-wider">System Roles Breakdown</h4>
-                <div className="space-y-3">
+              <div className="p-5 bg-white rounded-2xl border border-slate-150 shadow-sm space-y-4">
+                <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">System Roles Breakdown</h4>
+                <div className="space-y-3.5">
                   {Object.entries(stats.rolesBreakdown || {}).map(([role, val]: any) => (
                     <div key={role} className="space-y-1">
-                      <div className="flex justify-between text-xs text-slate-300">
-                        <span className="capitalize font-bold">{role}</span>
-                        <span>{val} Users ({Math.round((val / stats.totalUsers) * 100)}%)</span>
+                      <div className="flex justify-between text-xs text-slate-600">
+                        <span className="capitalize font-bold text-slate-700">{role}</span>
+                        <span className="font-medium">{val} Users ({Math.round((val / (stats.totalUsers || 1)) * 100)}%)</span>
                       </div>
-                      <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
-                        <div className="bg-emerald-500 h-full" style={{ width: `${(val / stats.totalUsers) * 100}%` }} />
+                      <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div className="bg-indigo-600 h-full" style={{ width: `${(val / (stats.totalUsers || 1)) * 100}%` }} />
                       </div>
                     </div>
                   ))}
@@ -481,17 +481,17 @@ export default function AdminDashboardComponent({
               </div>
 
               {/* Plans Breakdown */}
-              <div className="p-5 bg-slate-800 rounded-xl border border-slate-700/40 space-y-4">
-                <h4 className="text-xs font-extrabold text-slate-300 uppercase tracking-wider">Subscription Tier Breakdown</h4>
-                <div className="space-y-3">
+              <div className="p-5 bg-white rounded-2xl border border-slate-150 shadow-sm space-y-4">
+                <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Subscription Tier Breakdown</h4>
+                <div className="space-y-3.5">
                   {Object.entries(stats.plansBreakdown || {}).map(([plan, val]: any) => (
                     <div key={plan} className="space-y-1">
-                      <div className="flex justify-between text-xs text-slate-300">
-                        <span className="capitalize font-bold">{plan} Tier</span>
-                        <span>{val} Accounts ({Math.round((val / stats.totalUsers) * 100)}%)</span>
+                      <div className="flex justify-between text-xs text-slate-600">
+                        <span className="capitalize font-bold text-slate-700">{plan} Tier</span>
+                        <span className="font-medium">{val} Accounts ({Math.round((val / (stats.totalUsers || 1)) * 100)}%)</span>
                       </div>
-                      <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
-                        <div className="bg-emerald-500 h-full" style={{ width: `${(val / stats.totalUsers) * 100}%` }} />
+                      <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div className="bg-indigo-600 h-full" style={{ width: `${(val / (stats.totalUsers || 1)) * 100}%` }} />
                       </div>
                     </div>
                   ))}
@@ -503,74 +503,76 @@ export default function AdminDashboardComponent({
 
         {/* USERS & SUBSCRIPTIONS TAB */}
         {activeTab === "users" && (
-          <div className="bg-slate-800 rounded-xl border border-slate-700/40 overflow-hidden">
-            <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-slate-900 text-slate-400 text-[10px] uppercase font-bold tracking-wider">
-                <tr>
-                  <th className="p-3">User & Email</th>
-                  <th className="p-3">Role Level</th>
-                  <th className="p-3">Subscription</th>
-                  <th className="p-3">Joined Date</th>
-                  <th className="p-3 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-700/40">
-                {userList.map((u) => (
-                  <tr key={u.uid} className="hover:bg-slate-750 transition-colors">
-                    <td className="p-3 flex items-center gap-3">
-                      <img src={u.avatar} className="w-8 h-8 rounded-full border border-slate-700" alt="" />
-                      <div>
-                        <span className="font-bold text-slate-200 block">{u.name}</span>
-                        <span className="text-[10px] text-slate-500">{u.email}</span>
-                      </div>
-                    </td>
-                    <td className="p-3">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold capitalize ${
-                        u.role === "admin" ? "bg-red-500/10 text-red-400 border border-red-500/20" :
-                        u.role === "librarian" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-                        "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                      }`}>
-                        {u.role}
-                      </span>
-                    </td>
-                    <td className="p-3">
-                      <span className={`capitalize font-semibold ${u.subscriptionPlan === "premium" ? "text-amber-400" : "text-slate-400"}`}>
-                        {u.subscriptionPlan} Plan
-                      </span>
-                    </td>
-                    <td className="p-3 text-[10px] text-slate-500">
-                      {new Date(u.joinedAt).toLocaleDateString()}
-                    </td>
-                    <td className="p-3 text-right space-x-1">
-                      {/* Change Role selectors */}
-                      <select
-                        value={u.role}
-                        onChange={(e) => handleChangeRole(u.uid, e.target.value)}
-                        className="bg-slate-900 border border-slate-700 text-[10px] rounded px-1.5 py-1 text-slate-300 focus:outline-none"
-                      >
-                        <option value="student">Student</option>
-                        <option value="reader">Reader</option>
-                        <option value="premium">Premium</option>
-                        <option value="librarian">Librarian</option>
-                        <option value="admin">Admin</option>
-                      </select>
-
-                      {/* Upgrade Plan buttons */}
-                      <button
-                        onClick={() => handleChangeSubscription(u, u.subscriptionPlan === "premium" ? "free" : "premium")}
-                        className={`text-[10px] border px-2 py-1 rounded font-bold cursor-pointer transition-colors ${
-                          u.subscriptionPlan === "premium"
-                            ? "border-red-500/30 text-red-400 hover:bg-red-500/10"
-                            : "border-amber-500/30 text-amber-400 hover:bg-amber-500/10"
-                        }`}
-                      >
-                        {u.subscriptionPlan === "premium" ? "Downgrade free" : "Upgrade premium"}
-                      </button>
-                    </td>
+          <div className="bg-white rounded-2xl border border-slate-150 overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs text-slate-600 min-w-[600px]">
+                <thead className="bg-slate-50 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <tr>
+                    <th className="p-3.5 pl-5">User & Email</th>
+                    <th className="p-3.5">Role Level</th>
+                    <th className="p-3.5">Subscription</th>
+                    <th className="p-3.5">Joined Date</th>
+                    <th className="p-3.5 text-right pr-5">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {userList.map((u) => (
+                    <tr key={u.uid} className="hover:bg-slate-50/40 transition-colors">
+                      <td className="p-3.5 pl-5 flex items-center gap-3">
+                        <img src={u.avatar} className="w-8 h-8 rounded-full border border-slate-200 object-cover" alt="" />
+                        <div>
+                          <span className="font-bold text-slate-800 block">{u.name}</span>
+                          <span className="text-[10px] text-slate-400 font-medium">{u.email}</span>
+                        </div>
+                      </td>
+                      <td className="p-3.5">
+                        <span className={`px-2.5 py-0.5 rounded text-[9px] font-bold capitalize ${
+                          u.role === "admin" ? "bg-red-50 text-red-650 border border-red-100" :
+                          u.role === "librarian" ? "bg-amber-50 text-amber-700 border border-amber-100" :
+                          "bg-indigo-50 text-indigo-700 border border-indigo-100"
+                        }`}>
+                          {u.role}
+                        </span>
+                      </td>
+                      <td className="p-3.5">
+                        <span className={`capitalize font-semibold text-xs ${u.subscriptionPlan === "premium" ? "text-indigo-600" : "text-slate-400"}`}>
+                          {u.subscriptionPlan} Plan
+                        </span>
+                      </td>
+                      <td className="p-3.5 text-[10px] text-slate-400 font-medium">
+                        {new Date(u.joinedAt).toLocaleDateString()}
+                      </td>
+                      <td className="p-3.5 text-right pr-5 space-x-2">
+                        {/* Change Role selectors */}
+                        <select
+                          value={u.role}
+                          onChange={(e) => handleChangeRole(u.uid, e.target.value)}
+                          className="bg-slate-50 border border-slate-200 text-[10px] rounded px-2 py-1 text-slate-700 focus:outline-none focus:border-indigo-600"
+                        >
+                          <option value="student">Student</option>
+                          <option value="reader">Reader</option>
+                          <option value="premium">Premium</option>
+                          <option value="librarian">Librarian</option>
+                          <option value="admin">Admin</option>
+                        </select>
+
+                        {/* Upgrade Plan buttons */}
+                        <button
+                          onClick={() => handleChangeSubscription(u, u.subscriptionPlan === "premium" ? "free" : "premium")}
+                          className={`text-[10px] border px-2.5 py-1 rounded-lg font-bold cursor-pointer transition-colors ${
+                            u.subscriptionPlan === "premium"
+                              ? "border-red-200 text-red-600 hover:bg-red-50 bg-white"
+                              : "border-indigo-200 text-indigo-600 hover:bg-indigo-50 bg-white"
+                          }`}
+                        >
+                          {u.subscriptionPlan === "premium" ? "Downgrade free" : "Upgrade premium"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
@@ -578,11 +580,11 @@ export default function AdminDashboardComponent({
         {activeTab === "books" && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h4 className="text-sm font-extrabold text-slate-300 uppercase tracking-wider">Digital Book Database ({books.length})</h4>
+              <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider">Digital Catalog ({books.length})</h4>
               {!isAddingBook && (
                 <button
                   onClick={() => setIsAddingBook(true)}
-                  className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-100 font-semibold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer uppercase tracking-wider shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Register New Book</span>
@@ -591,9 +593,9 @@ export default function AdminDashboardComponent({
             </div>
 
             {isAddingBook ? (
-              <form onSubmit={handleSaveBook} className="bg-slate-800 p-6 rounded-xl border border-slate-700/40 space-y-4">
-                <div className="flex justify-between items-center pb-2 border-b border-slate-700">
-                  <h5 className="font-extrabold text-xs text-slate-300 uppercase tracking-wider">
+              <form onSubmit={handleSaveBook} className="bg-white p-6 rounded-2xl border border-slate-150 space-y-4 shadow-sm">
+                <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                  <h5 className="font-bold text-xs text-slate-700 uppercase tracking-wider">
                     {editingBookId ? "Modify Digital Book" : "Register Book Entry"}
                   </h5>
                   <button
@@ -602,7 +604,7 @@ export default function AdminDashboardComponent({
                       setIsAddingBook(false);
                       setEditingBookId(null);
                     }}
-                    className="text-xs text-slate-400 hover:text-slate-200"
+                    className="text-xs text-slate-400 hover:text-slate-600 font-semibold"
                   >
                     Cancel Forms
                   </button>
@@ -610,33 +612,33 @@ export default function AdminDashboardComponent({
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Book Title</label>
+                    <label className="block text-[10px] text-slate-450 font-bold uppercase mb-1">Book Title</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Modern Javascript"
                       value={bookForm.title}
                       onChange={(e) => setBookForm({ ...bookForm, title: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Author Name</label>
+                    <label className="block text-[10px] text-slate-450 font-bold uppercase mb-1">Author Name</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Douglas Crockford"
                       value={bookForm.author}
                       onChange={(e) => setBookForm({ ...bookForm, author: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Library Category</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Library Category</label>
                     <select
                       value={bookForm.category}
                       onChange={(e) => setBookForm({ ...bookForm, category: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600"
                     >
                       <option value="Technology">Technology</option>
                       <option value="Science Fiction">Science Fiction</option>
@@ -646,35 +648,35 @@ export default function AdminDashboardComponent({
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Release Year</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Release Year</label>
                     <input
                       type="number"
                       required
                       value={bookForm.year}
                       onChange={(e) => setBookForm({ ...bookForm, year: Number(e.target.value) })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Description / Summary</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Description / Summary</label>
                     <textarea
                       required
                       rows={2}
                       placeholder="Brief synopsis..."
                       value={bookForm.description}
                       onChange={(e) => setBookForm({ ...bookForm, description: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Page-by-page text (Split pages by '---' line divider)</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Page-by-page text (Split pages by '---' line divider)</label>
                     <textarea
                       required
                       rows={6}
                       placeholder="Welcome to Page 1!\n---\nWelcome to Page 2!\n---\nWelcome to Page 3!"
                       value={bookForm.pagesText}
                       onChange={(e) => setBookForm({ ...bookForm, pagesText: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs font-mono text-emerald-400 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-mono text-indigo-700 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                 </div>
@@ -682,7 +684,7 @@ export default function AdminDashboardComponent({
                 <div className="text-right pt-2">
                   <button
                     type="submit"
-                    className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-slate-100 font-semibold text-xs rounded-xl flex items-center gap-1.5 ml-auto cursor-pointer shadow-lg shadow-emerald-950/40"
+                    className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 ml-auto cursor-pointer shadow-sm uppercase tracking-wider"
                   >
                     <Save className="w-4 h-4" />
                     <span>Save Book Entry</span>
@@ -692,23 +694,23 @@ export default function AdminDashboardComponent({
             ) : (
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {books.map((b) => (
-                  <div key={b.id} className="p-4 bg-slate-800 rounded-xl border border-slate-700/45 flex gap-3 relative group">
-                    <img src={b.coverUrl} className="w-12 h-18 object-cover rounded shadow border border-slate-700" alt="" />
+                  <div key={b.id} className="p-4 bg-white rounded-2xl border border-slate-100 flex gap-3.5 relative group shadow-sm hover:shadow-md transition-all">
+                    <img src={b.coverUrl} className="w-12 h-18 object-cover rounded shadow border border-slate-150" alt="" />
                     <div className="flex-1 min-w-0 space-y-1">
-                      <span className="block text-[9px] text-emerald-400 font-bold uppercase">{b.category}</span>
-                      <h5 className="font-bold text-xs text-slate-100 truncate">{b.title}</h5>
+                      <span className="block text-[9px] text-indigo-600 font-bold uppercase">{b.category}</span>
+                      <h5 className="font-bold text-xs text-slate-800 truncate">{b.title}</h5>
                       <p className="text-[10px] text-slate-400 truncate">By {b.author}</p>
                       
-                      <div className="flex gap-2 pt-2">
+                      <div className="flex gap-3 pt-2">
                         <button
                           onClick={() => handleEditBookClick(b)}
-                          className="text-[10px] font-bold text-slate-300 hover:text-emerald-400 flex items-center gap-0.5 cursor-pointer"
+                          className="text-[10px] font-bold text-slate-500 hover:text-indigo-600 flex items-center gap-0.5 cursor-pointer transition-colors"
                         >
                           <Edit className="w-3.5 h-3.5" /> Edit
                         </button>
                         <button
                           onClick={() => handleDeleteBook(b.id)}
-                          className="text-[10px] font-bold text-red-400 hover:text-red-300 flex items-center gap-0.5 cursor-pointer"
+                          className="text-[10px] font-bold text-red-500 hover:text-red-700 flex items-center gap-0.5 cursor-pointer transition-colors"
                         >
                           <Trash2 className="w-3.5 h-3.5" /> Delete
                         </button>
@@ -725,11 +727,11 @@ export default function AdminDashboardComponent({
         {activeTab === "faqs" && (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h4 className="text-sm font-extrabold text-slate-300 uppercase tracking-wider">FAQ Knowledge Base ({faqList.length})</h4>
+              <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider">FAQ Knowledge Base ({faqList.length})</h4>
               {!isAddingFAQ && (
                 <button
                   onClick={() => setIsAddingFAQ(true)}
-                  className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-100 font-semibold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer uppercase tracking-wider shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add FAQ Query</span>
@@ -738,9 +740,9 @@ export default function AdminDashboardComponent({
             </div>
 
             {isAddingFAQ ? (
-              <form onSubmit={handleSaveFAQ} className="bg-slate-800 p-5 rounded-xl border border-slate-700/40 space-y-4">
-                <div className="flex justify-between items-center pb-2 border-b border-slate-700">
-                  <h5 className="font-extrabold text-xs text-slate-300 uppercase tracking-wider">
+              <form onSubmit={handleSaveFAQ} className="bg-white p-5 rounded-2xl border border-slate-150 space-y-4 shadow-sm">
+                <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                  <h5 className="font-bold text-xs text-slate-700 uppercase tracking-wider">
                     {editingFAQId ? "Modify Knowledge rule" : "Register Knowledge FAQ"}
                   </h5>
                   <button
@@ -749,7 +751,7 @@ export default function AdminDashboardComponent({
                       setIsAddingFAQ(false);
                       setEditingFAQId(null);
                     }}
-                    className="text-xs text-slate-400 hover:text-slate-200"
+                    className="text-xs text-slate-400 hover:text-slate-600 font-semibold"
                   >
                     Cancel Forms
                   </button>
@@ -757,22 +759,22 @@ export default function AdminDashboardComponent({
 
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">User Question Formulation</label>
+                    <label className="block text-[10px] text-slate-450 font-bold uppercase mb-1">User Question Formulation</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. What are the physical library operating hours?"
                       value={faqForm.question}
                       onChange={(e) => setFaqForm({ ...faqForm, question: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Knowledge Group Category</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Knowledge Group Category</label>
                     <select
                       value={faqForm.category}
                       onChange={(e) => setFaqForm({ ...faqForm, category: e.target.value as any })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600"
                     >
                       <option value="books">Books & Catalogue</option>
                       <option value="accounts">User Accounts & Auth</option>
@@ -781,24 +783,24 @@ export default function AdminDashboardComponent({
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Synonyms or Alternate question phrases (comma-separated)</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Synonyms or Alternate question phrases (comma-separated)</label>
                     <input
                       type="text"
                       placeholder="e.g. hours, timings, open hours, operating times"
                       value={faqForm.synonymsText}
                       onChange={(e) => setFaqForm({ ...faqForm, synonymsText: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Sarah's Verified Answer reply</label>
+                    <label className="block text-[10px] text-slate-455 font-bold uppercase mb-1">Sarah's Verified Answer reply</label>
                     <textarea
                       required
                       rows={3}
                       placeholder="Provide the exact verified answer for Sarah to repeat..."
                       value={faqForm.answer}
                       onChange={(e) => setFaqForm({ ...faqForm, answer: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
                     />
                   </div>
                 </div>
@@ -806,7 +808,7 @@ export default function AdminDashboardComponent({
                 <div className="text-right">
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-100 font-semibold text-xs rounded-xl flex items-center gap-1.5 ml-auto cursor-pointer"
+                    className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 ml-auto cursor-pointer uppercase tracking-wider shadow-sm"
                   >
                     <Save className="w-4 h-4" />
                     <span>Train Sarah on FAQ</span>
@@ -814,30 +816,30 @@ export default function AdminDashboardComponent({
                 </div>
               </form>
             ) : (
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 {faqList.map((f) => (
-                  <div key={f.id} className="p-4 bg-slate-800 rounded-xl border border-slate-700/40 flex justify-between items-start gap-4">
+                  <div key={f.id} className="p-4 bg-white rounded-2xl border border-slate-100 flex justify-between items-start gap-4 shadow-sm">
                     <div className="space-y-1.5">
-                      <span className="px-2 py-0.5 rounded bg-slate-900 text-[9px] text-emerald-400 font-bold capitalize">
+                      <span className="px-2.5 py-0.5 rounded-full bg-indigo-50 text-[9px] text-indigo-700 font-bold capitalize">
                         {f.category}
                       </span>
-                      <h5 className="font-bold text-xs text-slate-100">{f.question}</h5>
-                      <p className="text-[10px] text-slate-400 leading-normal">{f.answer}</p>
+                      <h5 className="font-bold text-xs text-slate-800">{f.question}</h5>
+                      <p className="text-[10px] text-slate-500 leading-normal">{f.answer}</p>
                       {f.synonyms && f.synonyms.length > 0 && (
-                        <p className="text-[9px] text-slate-500">Synonyms: {f.synonyms.join(", ")}</p>
+                        <p className="text-[9px] text-slate-400 font-medium">Synonyms: {f.synonyms.join(", ")}</p>
                       )}
                     </div>
                     <div className="flex gap-2 shrink-0">
                       <button
                         onClick={() => handleEditFAQClick(f)}
-                        className="p-1.5 bg-slate-900 hover:bg-slate-750 border border-slate-700 rounded text-slate-400 hover:text-slate-200"
+                        className="p-1.5 bg-slate-50 hover:bg-indigo-50 border border-slate-200 rounded-lg text-slate-500 hover:text-indigo-600 transition-colors"
                         title="Edit FAQ"
                       >
                         <Edit className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteFAQ(f.id)}
-                        className="p-1.5 bg-slate-900 hover:bg-red-950/40 border border-slate-700 rounded text-red-500 hover:text-red-400"
+                        className="p-1.5 bg-slate-50 hover:bg-red-50 border border-slate-200 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
                         title="Delete FAQ"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -853,41 +855,41 @@ export default function AdminDashboardComponent({
         {/* AI TRAINING & UNANSWERED QUESTIONS MONITOR TAB */}
         {activeTab === "unanswered" && (
           <div className="space-y-6">
-            <div className="p-4 bg-slate-800/60 rounded-xl border border-slate-700/40 flex items-center gap-3">
-              <AlertCircle className="w-5.5 h-5.5 text-amber-400 shrink-0" />
+            <div className="p-4 bg-white rounded-2xl border border-slate-150 flex items-center gap-3 shadow-sm">
+              <AlertCircle className="w-5 h-5 text-amber-500 shrink-0" />
               <div>
-                <h5 className="text-xs font-extrabold text-slate-200 uppercase tracking-wide">Continuous Learning AI system</h5>
-                <p className="text-[10px] text-slate-400 leading-normal">
-                  Sarah AI automatically flags queries that are not matched in our FAQ knowledge base or trigger low confidence. You can immediately resolve these and train Sarah.
+                <h5 className="text-xs font-bold text-slate-700 uppercase tracking-wide">Continuous Learning System</h5>
+                <p className="text-[10px] text-slate-450 leading-normal">
+                  Sarah automatically logs queries that are not matched in our FAQ knowledge base. You can immediately review these and train Sarah.
                 </p>
               </div>
             </div>
 
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {unansweredList.length === 0 ? (
-                <div className="p-8 text-center bg-slate-800/30 rounded-xl border border-slate-800/80">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
-                  <p className="text-xs text-slate-300 font-bold">Excellent! Sarah is fully trained</p>
-                  <p className="text-[10px] text-slate-500 mt-1">There are no pending unanswered questions in the continuous log.</p>
+                <div className="p-8 text-center bg-white rounded-2xl border border-slate-150 shadow-sm">
+                  <CheckCircle2 className="w-6 h-6 text-indigo-650 mx-auto mb-2" />
+                  <p className="text-xs text-slate-700 font-bold">Excellent! Sarah is fully trained</p>
+                  <p className="text-[10px] text-slate-400 mt-1">There are no pending unanswered questions in the continuous log.</p>
                 </div>
               ) : (
                 unansweredList.map((un) => (
-                  <div key={un.id} className="p-4 bg-slate-850 rounded-xl border border-slate-800/80 flex items-center justify-between gap-4">
+                  <div key={un.id} className="p-4 bg-white rounded-2xl border border-slate-100 flex items-center justify-between gap-4 shadow-sm">
                     <div className="space-y-1">
-                      <span className="text-[8px] text-slate-500 font-semibold uppercase">Asked {un.count} times • Recent: {new Date(un.askedAt).toLocaleDateString()}</span>
-                      <h5 className="font-bold text-xs text-slate-200">"{un.question}"</h5>
+                      <span className="text-[8px] text-slate-400 font-semibold uppercase">Asked {un.count} times • Recent: {new Date(un.askedAt).toLocaleDateString()}</span>
+                      <h5 className="font-bold text-xs text-slate-800">"{un.question}"</h5>
                     </div>
                     
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 shrink-0">
                       <button
                         onClick={() => handleTrainUnanswered(un)}
-                        className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-100 font-semibold text-[10px] rounded-lg cursor-pointer"
+                        className="px-3 py-1.5 bg-indigo-650 hover:bg-indigo-700 text-white font-bold text-[10px] rounded-lg cursor-pointer uppercase tracking-wider shadow-sm"
                       >
                         Write Answer & Train
                       </button>
                       <button
                         onClick={() => handleDeleteUnanswered(un.id)}
-                        className="px-2 py-1.5 bg-slate-800 hover:bg-slate-750 rounded-lg text-slate-400 hover:text-slate-200 text-[10px] font-semibold cursor-pointer"
+                        className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-500 text-[10px] font-semibold cursor-pointer transition-colors"
                       >
                         Dismiss
                       </button>
@@ -903,7 +905,7 @@ export default function AdminDashboardComponent({
         {activeTab === "logs" && (
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h4 className="text-sm font-extrabold text-slate-300 uppercase tracking-wider">System Activity Logs (Last 50)</h4>
+              <h4 className="text-sm font-bold text-slate-700 uppercase tracking-wider">System Activity Logs (Last 50)</h4>
               <button
                 onClick={async () => {
                   if (confirm("Clear live activity logs?")) {
@@ -911,25 +913,25 @@ export default function AdminDashboardComponent({
                     refreshAllAdminData();
                   }
                 }}
-                className="text-[10px] text-red-400 hover:text-red-300 font-semibold"
+                className="text-[10px] text-red-500 hover:text-red-700 font-bold uppercase tracking-wider"
               >
                 Flush Logs Cache
               </button>
             </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden text-[10px] font-mono text-slate-300">
-              <div className="p-2.5 bg-slate-950 font-bold border-b border-slate-800 flex justify-between">
+            <div className="bg-white border border-slate-150 rounded-2xl overflow-hidden shadow-sm text-[10px] font-mono text-slate-600">
+              <div className="p-3 bg-slate-50 font-bold border-b border-slate-150 flex justify-between">
                 <span>Action & Details</span>
                 <span>User & Timestamp</span>
               </div>
-              <div className="max-h-96 overflow-y-auto divide-y divide-slate-850">
+              <div className="max-h-96 overflow-y-auto divide-y divide-slate-100">
                 {logsList.map((log) => (
-                  <div key={log.id} className="p-2.5 hover:bg-slate-850/40 flex justify-between gap-4">
+                  <div key={log.id} className="p-3 hover:bg-slate-50/40 flex justify-between gap-4">
                     <div>
-                      <span className="text-emerald-400 font-bold uppercase mr-2">[{log.action}]</span>
+                      <span className="text-indigo-600 font-bold uppercase mr-2">[{log.action}]</span>
                       <span>{log.details}</span>
                     </div>
-                    <div className="text-right text-slate-500 shrink-0">
+                    <div className="text-right text-slate-400 shrink-0 font-medium">
                       <span>{log.userName} • {new Date(log.timestamp).toLocaleTimeString()}</span>
                     </div>
                   </div>
@@ -941,22 +943,22 @@ export default function AdminDashboardComponent({
 
         {/* BACKUP & RECOVERY TAB */}
         {activeTab === "backups" && (
-          <div className="space-y-6 p-4">
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-5">
               
               {/* Export Panel */}
-              <div className="bg-slate-800 p-5 rounded-xl border border-slate-700/40 space-y-4">
+              <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm space-y-4">
                 <div className="flex items-center gap-2">
-                  <Download className="w-5 h-5 text-emerald-400" />
-                  <h4 className="text-xs font-extrabold text-slate-200 uppercase tracking-wider">Export Database Backup</h4>
+                  <Download className="w-5 h-5 text-indigo-600" />
+                  <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Export Database Backup</h4>
                 </div>
-                <p className="text-[10px] text-slate-400 leading-normal">
+                <p className="text-[10px] text-slate-450 leading-relaxed font-normal">
                   Download a snapshot of the entire library state—including accounts, custom books, annotations, and chatbot FAQs—into a unified backup JSON file.
                 </p>
                 <a
                   href="/api/admin/backup"
                   target="_blank"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-100 font-bold text-xs rounded-xl cursor-pointer shadow-lg shadow-emerald-950/40"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl cursor-pointer shadow-sm uppercase tracking-wider"
                 >
                   <FileJson className="w-4 h-4" />
                   <span>Download Backup JSON File</span>
@@ -964,12 +966,12 @@ export default function AdminDashboardComponent({
               </div>
 
               {/* Restore Panel */}
-              <div className="bg-slate-800 p-5 rounded-xl border border-slate-700/40 space-y-4">
+              <div className="bg-white p-5 rounded-2xl border border-slate-150 shadow-sm space-y-4">
                 <div className="flex items-center gap-2">
-                  <Upload className="w-5 h-5 text-emerald-400" />
-                  <h4 className="text-xs font-extrabold text-slate-200 uppercase tracking-wider">Restore database recovery</h4>
+                  <Upload className="w-5 h-5 text-indigo-600" />
+                  <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Restore Database Recovery</h4>
                 </div>
-                <p className="text-[10px] text-slate-400 leading-normal">
+                <p className="text-[10px] text-slate-450 leading-relaxed font-normal">
                   Paste the JSON backup content into the field below to immediately restore or overwrite the active library catalogue databases.
                 </p>
                 
@@ -978,13 +980,13 @@ export default function AdminDashboardComponent({
                   rows={4}
                   value={backupJSONInput}
                   onChange={(e) => setBackupJSONInput(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs font-mono text-emerald-400 placeholder-slate-600 focus:outline-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-mono text-slate-700 placeholder-slate-400 focus:outline-none focus:border-indigo-600 focus:bg-white"
                 />
 
                 <button
                   type="button"
                   onClick={handleRestoreDatabase}
-                  className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-slate-100 font-bold text-xs rounded-xl cursor-pointer"
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl cursor-pointer uppercase tracking-wider shadow-sm"
                 >
                   Trigger Recovery Restore
                 </button>

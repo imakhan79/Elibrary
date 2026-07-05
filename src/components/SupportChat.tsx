@@ -200,11 +200,11 @@ export default function SupportChatComponent({
       {/* Floating Chat Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-30 p-4 bg-emerald-600 hover:bg-emerald-500 text-slate-100 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 cursor-pointer border border-emerald-500/20"
+        className="fixed bottom-6 right-6 z-30 p-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer border border-indigo-500/10"
         id="chat-trigger-button"
       >
         <Bot className="w-6 h-6" />
-        <span className="text-xs font-extrabold uppercase tracking-wider hidden sm:inline">Ask Sarah AI</span>
+        <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">Ask Sarah AI</span>
         {isTyping && (
           <span className="w-2.5 h-2.5 bg-amber-400 rounded-full animate-ping" />
         )}
@@ -212,25 +212,25 @@ export default function SupportChatComponent({
 
       {/* Floating Chat Panel Drawer */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-30 w-full max-w-sm h-[500px] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col justify-between overflow-hidden" id="chat-floating-panel">
+        <div className="fixed bottom-24 right-6 z-30 w-full max-w-sm h-[500px] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col justify-between overflow-hidden font-sans" id="chat-floating-panel">
           
           {/* Header */}
-          <div className="p-3 bg-gradient-to-r from-emerald-800 to-teal-950 border-b border-slate-800 flex items-center justify-between">
+          <div className="p-3.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/20 relative">
-                <Bot className="w-5 h-5 text-emerald-400" />
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-slate-900" />
+              <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center border border-white/10 relative">
+                <Bot className="w-5 h-5 text-indigo-400" />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-indigo-500 rounded-full border-2 border-slate-900" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-xs text-slate-100">Sarah AI</span>
+                  <span className="font-bold text-xs text-white">Sarah AI</span>
                   {escalated && (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[8px] font-bold uppercase tracking-wider animate-pulse">
-                      Live Escalated
+                    <span className="px-1.5 py-0.5 rounded-full bg-amber-500 text-slate-950 text-[7px] font-bold uppercase tracking-wider animate-pulse">
+                      Escalated
                     </span>
                   )}
                 </div>
-                <span className="text-[10px] text-emerald-300 font-semibold block">Senior Support Agent</span>
+                <span className="text-[10px] text-slate-400 font-medium block leading-none mt-0.5">Support Desk Representative</span>
               </div>
             </div>
 
@@ -239,62 +239,63 @@ export default function SupportChatComponent({
               <button
                 onClick={() => {
                   setVoiceEnabled(!voiceEnabled);
-                  onActivityLog("Voice Toggle", `Switched Sarah's Text-to-Speech speech mode ${!voiceEnabled ? "On" : "Off"}.`);
+                  onActivityLog("Voice Toggle", `Switched Sarah's Text-to-Speech mode ${!voiceEnabled ? "On" : "Off"}.`);
                 }}
                 className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                  voiceEnabled ? "bg-emerald-500/20 text-emerald-400" : "text-slate-500 hover:text-slate-300"
+                  voiceEnabled ? "bg-white/10 text-indigo-400" : "text-slate-500 hover:text-slate-350"
                 }`}
-                title={voiceEnabled ? "Text-to-Speech Active (Speaks response)" : "Text-to-Speech Muted"}
+                title={voiceEnabled ? "Voice Output Active" : "Voice Output Muted"}
               >
                 {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
               </button>
 
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-xs text-slate-400 hover:text-slate-200 border border-slate-800 rounded bg-slate-950 px-2 py-0.5"
+                className="text-[10px] font-bold text-slate-300 hover:text-white border border-slate-700 rounded bg-slate-800 px-2.5 py-1 transition-colors"
               >
                 Hide
               </button>
             </div>
           </div>
 
-          {/* Sentiment Status warning */}
+          {/* Sentiment Status Warning */}
           {sentimentStatus === "negative" && (
-            <div className="bg-red-950/60 border-b border-red-500/20 px-3 py-1.5 flex items-center gap-1.5 text-[9px] text-red-300 font-semibold">
-              <AlertTriangle className="w-3.5 h-3.5 text-red-400 animate-bounce" />
-              <span>Negative sentiment detected. Escalating to live staff assistance...</span>
+            <div className="bg-red-50 border-b border-red-100 px-3.5 py-2 flex items-center gap-2 text-[10px] text-red-700 font-medium">
+              <AlertTriangle className="w-4 h-4 text-red-500 animate-bounce shrink-0" />
+              <span>Negative sentiment detected. Escalating to live support representative...</span>
             </div>
           )}
 
           {/* Message Thread */}
-          <div className="flex-1 p-4 overflow-y-auto bg-slate-950/40 space-y-3">
+          <div className="flex-1 p-4 overflow-y-auto bg-slate-50/50 space-y-3.5">
             {messages.map((m) => {
+              const mId = m.id;
               const isBot = m.sender === "bot";
               const isHumanAgent = m.sender === "human_agent";
 
               return (
                 <div
-                  key={m.id}
-                  className={`flex gap-2.5 max-w-[85%] ${
+                  key={mId}
+                  className={`flex gap-2 max-w-[88%] ${
                     isBot || isHumanAgent ? "mr-auto" : "ml-auto flex-row-reverse"
                   }`}
                 >
-                  <div className={`w-6 h-6 rounded-full shrink-0 flex items-center justify-center border text-[10px] font-bold ${
+                  <div className={`w-6 h-6 rounded-full shrink-0 flex items-center justify-center border text-[10px] font-bold shadow-sm ${
                     isHumanAgent 
-                      ? "bg-amber-500/10 border-amber-500/30 text-amber-400" 
+                      ? "bg-amber-50 border-amber-200 text-amber-700" 
                       : isBot 
-                        ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400" 
-                        : "bg-slate-800 border-slate-700 text-slate-300"
+                        ? "bg-indigo-50 border-indigo-250 text-indigo-700" 
+                        : "bg-slate-100 border-slate-200 text-slate-600"
                   }`}>
                     {isHumanAgent ? "J" : isBot ? "S" : "U"}
                   </div>
                   
-                  <div className={`p-2.5 rounded-xl text-[11px] leading-relaxed whitespace-pre-wrap ${
+                  <div className={`p-3 rounded-2xl text-[11px] leading-relaxed whitespace-pre-wrap shadow-sm ${
                     isHumanAgent
-                      ? "bg-slate-900 border border-amber-500/25 text-slate-200"
+                      ? "bg-white border border-amber-300 text-slate-800 rounded-tl-none"
                       : isBot
-                        ? "bg-slate-900 border border-slate-800 text-slate-200"
-                        : "bg-emerald-600 text-slate-100"
+                        ? "bg-white border border-slate-150 text-slate-850 rounded-tl-none"
+                        : "bg-indigo-600 text-white rounded-tr-none"
                   }`}>
                     {m.text}
                   </div>
@@ -303,14 +304,14 @@ export default function SupportChatComponent({
             })}
 
             {isTyping && (
-              <div className="flex gap-2.5 max-w-[80%] mr-auto items-center">
-                <div className="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-[10px] text-slate-500 font-bold">
+              <div className="flex gap-2 max-w-[80%] mr-auto items-center">
+                <div className="w-6 h-6 rounded-full bg-indigo-50 border border-slate-200 flex items-center justify-center text-[10px] text-indigo-700 font-bold">
                   S
                 </div>
-                <div className="bg-slate-900 p-2.5 rounded-xl flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce delay-0" />
-                  <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce delay-150" />
-                  <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce delay-300" />
+                <div className="bg-white border border-slate-150 p-2.5 rounded-2xl rounded-tl-none flex items-center gap-1 shadow-sm">
+                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-0" />
+                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150" />
+                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-300" />
                 </div>
               </div>
             )}
@@ -318,16 +319,16 @@ export default function SupportChatComponent({
           </div>
 
           {/* Footer Controls & Inputs */}
-          <div className="p-3 bg-slate-900 border-t border-slate-800 space-y-2">
+          <div className="p-3 bg-white border-t border-slate-150 space-y-2.5">
             
             {/* Auto Suggestions list */}
             {autoSuggestions.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1">
                 {autoSuggestions.map((q) => (
                   <button
                     key={q}
                     onClick={() => handleSendMessage(q)}
-                    className="px-2.5 py-1 bg-slate-950 hover:bg-slate-850 border border-slate-800 rounded-full text-[9px] text-emerald-400 font-semibold text-left transition-colors flex items-center gap-0.5 cursor-pointer"
+                    className="px-2.5 py-1 bg-slate-50 hover:bg-slate-100 border border-slate-150 rounded-full text-[9px] text-indigo-700 font-bold text-left transition-colors flex items-center gap-0.5 cursor-pointer"
                   >
                     <span>{q}</span>
                     <ArrowUpRight className="w-3 h-3 shrink-0" />
@@ -343,33 +344,34 @@ export default function SupportChatComponent({
                 onClick={toggleListening}
                 className={`p-2 rounded-xl transition-colors cursor-pointer border ${
                   isListening
-                    ? "bg-red-500/20 border-red-500/30 text-red-400 animate-pulse"
-                    : "bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200"
+                    ? "bg-red-50 border-red-300 text-red-500 animate-pulse"
+                    : "bg-slate-50 border-slate-200 text-slate-500 hover:text-slate-800"
                 }`}
-                title={isListening ? "Listening... Speak now" : "Use Voice Dictation Mic input"}
+                title={isListening ? "Listening... Speak now" : "Use Voice Input Microphone"}
               >
                 {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
               </button>
 
               <input
                 type="text"
-                placeholder={isListening ? "Listening to spoken voice..." : "Ask Sarah library questions..."}
+                placeholder={isListening ? "Listening..." : "Ask Sarah library questions..."}
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage(inputText)}
-                className="flex-1 bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-[11px] text-slate-100 placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-[11px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all"
               />
 
               <button
                 type="button"
                 onClick={() => handleSendMessage(inputText)}
-                className="p-2 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-slate-100 shadow transition-colors cursor-pointer"
+                className="p-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-white shadow-sm transition-colors cursor-pointer"
               >
                 <Send className="w-4 h-4" />
               </button>
             </div>
+            
             <div className="text-center">
-              <span className="text-[8px] text-slate-500 font-medium">Auto-Suggestions, Sentiment Analysis & Speech Synthesis Active</span>
+              <span className="text-[8px] text-slate-400 font-medium">Real-time Dictation & Speech Synthesis Enabled</span>
             </div>
           </div>
 
