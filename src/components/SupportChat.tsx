@@ -212,14 +212,14 @@ export default function SupportChatComponent({
 
       {/* Floating Chat Panel Drawer */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-30 w-full max-w-sm h-[500px] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col justify-between overflow-hidden font-sans" id="chat-floating-panel">
+        <div className="fixed bottom-24 right-6 z-30 w-full max-w-sm h-[500px] bg-[#0B1528] border border-indigo-950/80 rounded-2xl shadow-2xl flex flex-col justify-between overflow-hidden font-sans" id="chat-floating-panel">
           
           {/* Header */}
-          <div className="p-3.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-white">
+          <div className="p-3.5 bg-[#080E1C] border-b border-indigo-950/80 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center border border-white/10 relative">
+              <div className="w-9 h-9 bg-white/5 rounded-full flex items-center justify-center border border-indigo-900/40 relative">
                 <Bot className="w-5 h-5 text-indigo-400" />
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-indigo-500 rounded-full border-2 border-slate-900" />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-indigo-500 rounded-full border-2 border-[#080E1C]" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
@@ -251,7 +251,7 @@ export default function SupportChatComponent({
 
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-[10px] font-bold text-slate-300 hover:text-white border border-slate-700 rounded bg-slate-800 px-2.5 py-1 transition-colors"
+                className="text-[10px] font-bold text-slate-300 hover:text-white border border-indigo-950 rounded bg-slate-850 px-2.5 py-1 transition-colors"
               >
                 Hide
               </button>
@@ -260,14 +260,14 @@ export default function SupportChatComponent({
 
           {/* Sentiment Status Warning */}
           {sentimentStatus === "negative" && (
-            <div className="bg-red-50 border-b border-red-100 px-3.5 py-2 flex items-center gap-2 text-[10px] text-red-700 font-medium">
+            <div className="bg-red-950/40 border-b border-red-900/50 px-3.5 py-2 flex items-center gap-2 text-[10px] text-red-200 font-medium">
               <AlertTriangle className="w-4 h-4 text-red-500 animate-bounce shrink-0" />
               <span>Negative sentiment detected. Escalating to live support representative...</span>
             </div>
           )}
 
           {/* Message Thread */}
-          <div className="flex-1 p-4 overflow-y-auto bg-slate-50/50 space-y-3.5">
+          <div className="flex-1 p-4 overflow-y-auto bg-[#0E1B35] space-y-3.5">
             {messages.map((m) => {
               const mId = m.id;
               const isBot = m.sender === "bot";
@@ -282,20 +282,20 @@ export default function SupportChatComponent({
                 >
                   <div className={`w-6 h-6 rounded-full shrink-0 flex items-center justify-center border text-[10px] font-bold shadow-sm ${
                     isHumanAgent 
-                      ? "bg-amber-50 border-amber-200 text-amber-700" 
+                      ? "bg-amber-950 border-amber-900/50 text-amber-450" 
                       : isBot 
-                        ? "bg-indigo-50 border-indigo-250 text-indigo-700" 
-                        : "bg-slate-100 border-slate-200 text-slate-600"
+                        ? "bg-indigo-950 border-indigo-900/40 text-indigo-350" 
+                        : "bg-indigo-900/50 border-indigo-800/40 text-indigo-200"
                   }`}>
                     {isHumanAgent ? "J" : isBot ? "S" : "U"}
                   </div>
                   
                   <div className={`p-3 rounded-2xl text-[11px] leading-relaxed whitespace-pre-wrap shadow-sm ${
                     isHumanAgent
-                      ? "bg-white border border-amber-300 text-slate-800 rounded-tl-none"
+                      ? "bg-[#1C2321]/80 border border-amber-900/40 text-amber-100 rounded-tl-none"
                       : isBot
-                        ? "bg-white border border-slate-150 text-slate-850 rounded-tl-none"
-                        : "bg-indigo-600 text-white rounded-tr-none"
+                        ? "bg-[#172A4E] border border-indigo-900/40 text-slate-100 rounded-tl-none"
+                        : "bg-[#4f46e5] text-white rounded-tr-none"
                   }`}>
                     {m.text}
                   </div>
@@ -305,10 +305,10 @@ export default function SupportChatComponent({
 
             {isTyping && (
               <div className="flex gap-2 max-w-[80%] mr-auto items-center">
-                <div className="w-6 h-6 rounded-full bg-indigo-50 border border-slate-200 flex items-center justify-center text-[10px] text-indigo-700 font-bold">
+                <div className="w-6 h-6 rounded-full bg-indigo-950 border border-indigo-900/40 flex items-center justify-center text-[10px] text-indigo-350 font-bold">
                   S
                 </div>
-                <div className="bg-white border border-slate-150 p-2.5 rounded-2xl rounded-tl-none flex items-center gap-1 shadow-sm">
+                <div className="bg-[#172A4E] border border-indigo-900/40 p-2.5 rounded-2xl rounded-tl-none flex items-center gap-1 shadow-sm">
                   <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-0" />
                   <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150" />
                   <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-300" />
@@ -319,7 +319,7 @@ export default function SupportChatComponent({
           </div>
 
           {/* Footer Controls & Inputs */}
-          <div className="p-3 bg-white border-t border-slate-150 space-y-2.5">
+          <div className="p-3 bg-[#080E1C] border-t border-indigo-950/80 space-y-2.5">
             
             {/* Auto Suggestions list */}
             {autoSuggestions.length > 0 && (
@@ -328,7 +328,7 @@ export default function SupportChatComponent({
                   <button
                     key={q}
                     onClick={() => handleSendMessage(q)}
-                    className="px-2.5 py-1 bg-slate-50 hover:bg-slate-100 border border-slate-150 rounded-full text-[9px] text-indigo-700 font-bold text-left transition-colors flex items-center gap-0.5 cursor-pointer"
+                    className="px-2.5 py-1 bg-[#172A4E] hover:bg-[#1E3563] border border-indigo-900/40 rounded-full text-[9px] text-indigo-300 font-bold text-left transition-colors flex items-center gap-0.5 cursor-pointer"
                   >
                     <span>{q}</span>
                     <ArrowUpRight className="w-3 h-3 shrink-0" />
@@ -344,8 +344,8 @@ export default function SupportChatComponent({
                 onClick={toggleListening}
                 className={`p-2 rounded-xl transition-colors cursor-pointer border ${
                   isListening
-                    ? "bg-red-50 border-red-300 text-red-500 animate-pulse"
-                    : "bg-slate-50 border-slate-200 text-slate-500 hover:text-slate-800"
+                    ? "bg-red-950/60 border-red-800 text-red-400 animate-pulse"
+                    : "bg-[#0E1B35] border-indigo-900/40 text-slate-400 hover:text-slate-200"
                 }`}
                 title={isListening ? "Listening... Speak now" : "Use Voice Input Microphone"}
               >
@@ -358,20 +358,20 @@ export default function SupportChatComponent({
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage(inputText)}
-                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-[11px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all"
+                className="flex-1 bg-[#0E1B35] border border-indigo-900/40 rounded-xl py-2 px-3 text-[11px] text-slate-150 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:bg-[#122345] transition-all"
               />
 
               <button
                 type="button"
                 onClick={() => handleSendMessage(inputText)}
-                className="p-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-white shadow-sm transition-colors cursor-pointer"
+                className="p-2 bg-[#4f46e5] hover:bg-[#5c53ff] rounded-xl text-white shadow-sm transition-colors cursor-pointer"
               >
                 <Send className="w-4 h-4" />
               </button>
             </div>
             
             <div className="text-center">
-              <span className="text-[8px] text-slate-400 font-medium">Real-time Dictation & Speech Synthesis Enabled</span>
+              <span className="text-[8px] text-slate-500 font-medium">Real-time Dictation & Speech Synthesis Enabled</span>
             </div>
           </div>
 
